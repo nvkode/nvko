@@ -70,7 +70,11 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "composer install --working-dir=tools/phpcs",
+            "composer install --working-dir=tools/phpstan",
+            "composer install --working-dir=tools/phpmd",
+            "composer install --working-dir=tools/twigcs"
         ],
         "post-update-cmd": [
             "@auto-scripts"
