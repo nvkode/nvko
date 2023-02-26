@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block styles %}
+    {{ encore_entry_link_tags('tailwind') }}
     {{ encore_entry_link_tags('docs') }}
 {% endblock %}
 
-{% block scripts %}
-    {{ encore_entry_script_tags('docs') }}
+{% block body %}
+    <body class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+        {% block page %}{% endblock %}
+
+        {% block scripts %}
+            {{ encore_entry_script_tags('docs') }}
+        {% endblock %}
+    </body>
 {% endblock %}

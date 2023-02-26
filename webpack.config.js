@@ -25,6 +25,9 @@ Encore
     .addEntry('docs', './assets/docs/index.ts')
     .addEntry('emails', './assets/emails/index.ts')
 
+    // Style entries
+    .addStyleEntry('tailwind', './assets/tailwind/tailwind.css')
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -59,11 +62,14 @@ Encore
     // enables Sass/SCSS support
     //.enableSassLoader()
 
-    // uncomment if you use TypeScript
+    // enable TypeScript
     .enableTypeScriptLoader()
 
     // uncomment if you use React
     //.enableReactPreset()
+
+    // Enable PostCSS loader
+    .enablePostCssLoader()
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher

@@ -2,27 +2,46 @@
 
 {% block title %}Documentation{% endblock %}
 
-{% block body %}
-    {% for key, array in data %}
-        {% if key is same as('@attributes') %}
-            {% if array.name is defined %}
-                <h1>{{ array.name }}</h1>
-            {% endif %}
-        {% elseif key is same as('file') %}
-            <h2>Navigation</h2>
-            <nav>
-                {% for file in array %}
-                    {% if file['@attributes'] is defined %}
-                        {% set name = file['@attributes'].path %}
-                        {% set hash = file['@attributes'].hash %}
+{% block page %}
+    <div class="z-50 hidden bg-alabaster lg:flex md:flex-col md:fixed md:inset-y-0">
+        <div class="flex flex-col flex-1 min-h-0 border-r border-smoke">
+            <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto lg:px-6">
+                {% for key, array in data %}
+                    {% if key is same as('@attributes') %}
+                        {% if array.name is defined %}
+                            <div class="flex items-center flex-shrink-0 text-comet">
+                                <a href="{{ path('app_documentation_read') }}">
+                                    <span class="inline-flex items-center font-bold tracking-tighter lg:text-2xl">
+                                        {{ array.name }}
+                                    </span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% elseif key is same as('file') %}
+                        <nav class="flex-1 mt-12">
+                            <div class="border-l">
+                                <p class="text-comet text-sm font-semibold uppercase ml-6 lg:text-[15px]">
+                                    Files
+                                </p>
+                                <div class="mt-3">
+                                    {% for file in array %}
+                                        {% if file['@attributes'] is defined %}
+                                            {% set name = file['@attributes'].path %}
+                                            {% set hash = file['@attributes'].hash %}
 
-                        {% include '_docs/_components/_link.html.twig' with {
-                            name: name,
-                            path: path('app_documentation_read', {'hash': hash, 'type': 'file'})
-                        } %}
+                                            {% include '_docs/_components/_link.html.twig' with {
+                                                name: name,
+                                                path: path('app_documentation_read', {'hash': hash, 'type': 'file'}),
+                                                classes: 'hover:bg-white text-oyster hover:text-river group flex items-center p-2 pl-6 text-base font-light border-l border-transparent'
+                                            } %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </nav>
                     {% endif %}
                 {% endfor %}
-            </nav>
-        {% endif %}
-    {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
