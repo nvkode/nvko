@@ -7,9 +7,13 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% endblock %}
 
+    {% block styles %}{% endblock %}
+
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 {% block body %}{% endblock %}
+
+{% block scripts %}{% endblock %}
 </body>
 </html>

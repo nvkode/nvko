@@ -1,1 +1,9 @@
 {% extends 'base.html.twig' %}
+
+{% block styles %}
+    {{ encore_entry_link_tags('docs') }}
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('docs') }}
+{% endblock %}
