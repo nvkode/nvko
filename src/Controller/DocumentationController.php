@@ -43,7 +43,7 @@ class DocumentationController extends AbstractController
      * @return Response
      */
     #[Route(
-        path: '/docs/read',
+        path: '/docs',
         name: 'read',
         methods: ['GET']
     )]
