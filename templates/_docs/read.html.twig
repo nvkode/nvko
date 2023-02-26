@@ -16,9 +16,10 @@
                         {% set name = file['@attributes'].path %}
                         {% set hash = file['@attributes'].hash %}
 
-                        <a href="{{ path('app_documentation_read', {'hash': hash, 'type': 'file'}) }}">
-                            {{ name }}
-                        </a>
+                        {% include '_docs/_components/_link.html.twig' with {
+                            name: name,
+                            path: path('app_documentation_read', {'hash': hash, 'type': 'file'})
+                        } %}
                     {% endif %}
                 {% endfor %}
             </nav>

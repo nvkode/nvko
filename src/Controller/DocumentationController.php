@@ -72,7 +72,7 @@ class DocumentationController extends AbstractController
         }
 
         return $this->render(
-            '_docs/_read.html.twig',
+            '_docs/read.html.twig',
             ['data' => $data]
         );
 
