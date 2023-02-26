@@ -5,7 +5,7 @@
 {% block page %}
     <div class="z-50 hidden bg-alabaster lg:flex md:flex-col md:fixed md:inset-y-0 lg:w-[435px]">
         <div class="flex flex-col flex-1 min-h-0 border-r border-smoke">
-            <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto lg:px-6">
+            <div class="flex flex-col flex-1 pt-8 pb-4 overflow-y-auto lg:px-6">
                 {% for key, array in data %}
                     {% if key is same as('@attributes') %}
                         {% if array.name is defined %}
@@ -50,12 +50,40 @@
             <div class="relative z-0 flex-1 overflow-y-auto focus:outline-none lg:pl-[435px]">
                 <div class="flex-1 mx-auto">
                     <section class="mx-auto border-b border-periblue">
-                        <div class="px-4 mx-auto max-w-7xl sm:px-6">
+                        <div class="px-4 mx-auto sm:px-6">
                             <h1 class="pt-8 mx-auto text-2xl leading-none tracking-tighter text-comet lg:text-3xl"
                                 style="opacity: 1; transform: translateY(0px);">
                                 {{ file.name }}
                             </h1>
                             <p class="pt-2 pb-8">{{ file.path }}</p>
+                        </div>
+                    </section>
+                    <section class="pt-6 pb-24">
+                        <div class="px-4 mx-auto sm:px-6">
+                            {% for property in file.properties %}
+                                <table class="!text-left w-full">
+                                    <thead>
+                                    <tr>
+                                        <th class="w-1/2">Key</th>
+                                        <th class="w-1/2">Value</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for key, value in property %}
+                                        <tr>
+                                            <td>{{ key }}</td>
+                                            <td>
+                                                {% if value is not same as('') %}
+                                                    {{ value }}
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endfor %}
                         </div>
                     </section>
                 </div>

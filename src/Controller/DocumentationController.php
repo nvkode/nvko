@@ -150,8 +150,8 @@ class DocumentationController extends AbstractController
         return [
             'visibility'       => $property['@attributes']['visibility'],
             'name'             => $property['name'],
-            'description'      => $docblock['description'],
-            'long-description' => $docblock['long-description'],
+            'description'      => implode('.', $docblock['description']),
+            'long-description' => implode('.', $docblock['long-description']),
             'type'             => $type,
         ];
 
