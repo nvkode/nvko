@@ -1,3 +1,29 @@
 {% extends '_docs/base.html.twig' %}
 
+{% set link_navigation = [] %}
+
 {% block title %}Documentation{% endblock %}
+
+{% block body %}
+    {% for key, array in data %}
+        {% if key is same as('@attributes') %}
+            {% if array.name is defined %}
+                <h1>{{ array.name }}</h1>
+            {% endif %}
+        {% elseif key is same as('file') %}
+            <h2>Navigation</h2>
+            <nav>
+                {% for file in array %}
+                    {% if file['@attributes'] is defined %}
+                        {% set name = file['@attributes'].path %}
+                        {% set hash = file['@attributes'].hash %}
+
+                        <a href="{{ path('app_documentation_read', {'hash': hash, 'type': 'file'}) }}">
+                            {{ name }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </nav>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
