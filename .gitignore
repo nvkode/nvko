@@ -17,8 +17,3 @@
 /.phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-
-###> friendsofphp/php-cs-fixer ###
-/tools/PHP_CodeSniffer/vendor/
-/.php-cs-fixer.cache
-###< friendsofphp/php-cs-fixer ###
