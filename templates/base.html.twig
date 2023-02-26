@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    {% block metas %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+</html>
