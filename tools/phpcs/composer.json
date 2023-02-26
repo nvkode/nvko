@@ -1,0 +1,8 @@
+{
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*"
+    },
+    "scripts": {
+        "validation:run": "phpcs --standard=config.xml ../../../"
+    }
+}

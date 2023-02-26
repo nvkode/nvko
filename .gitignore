@@ -19,6 +19,6 @@
 ###< symfony/phpunit-bridge ###
 
 ###> friendsofphp/php-cs-fixer ###
-/tools/php-cs-fixer/vendor/
+/tools/PHP_CodeSniffer/vendor/
 /.php-cs-fixer.cache
 ###< friendsofphp/php-cs-fixer ###

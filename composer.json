@@ -72,6 +72,12 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "validation:phpcs": "composer validation:run --working-dir=tools/phpcs",
+        "validation:phpstan": "phpstan analyse -c phpstan.neon.dist",
+        "validation:all": [
+            "@validation:phpcs",
+            "@validation:phpstan"
         ]
     },
     "conflict": {
