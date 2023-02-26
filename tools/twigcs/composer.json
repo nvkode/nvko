@@ -1,0 +1,8 @@
+{
+    "require-dev": {
+        "friendsoftwig/twigcs": "^6.2"
+    },
+    "scripts": {
+        "validation:run": "twigcs ../../templates"
+    }
+}

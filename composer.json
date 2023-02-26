@@ -78,10 +78,12 @@
         "validation:phpcs": "composer validation:run --working-dir=tools/phpcs",
         "validation:phpstan": "composer validation:run --working-dir=tools/phpstan",
         "validation:phpmd": "composer validation:run --working-dir=tools/phpmd",
-        "validation:all": [
+        "validation:twigcs": "composer validation:run --working-dir=tools/twigcs",
+        "validation:complex": [
             "@validation:phpcs",
             "@validation:phpstan",
-            "@validation:phpmd"
+            "@validation:phpmd",
+            "@validation:twigcs"
         ]
     },
     "conflict": {
