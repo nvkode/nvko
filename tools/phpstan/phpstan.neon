@@ -1,0 +1,25 @@
+includes:
+    - ./vendor/phpstan/phpstan-doctrine/extension.neon
+    - ./vendor/phpstan/phpstan-symfony/extension.neon
+    - ./vendor/phpstan/phpstan-symfony/rules.neon
+
+parameters:
+    # Default configuration
+    level: 8
+    paths:
+        - '../../src/'
+        - '../../tests/'
+    excludePaths:
+        - '../../src/Kernel.php'
+        - '../../tests/bootstrap.php'
+        - '../../tests/object-manager.php'
+    # PHPUnit configuration
+
+    # Doctrine configuration
+    doctrine:
+    	objectManagerLoader: object-manager.php
+    # Symfony configuration
+    symfony:
+        containerXmlPath: ../../var/cache/dev/App_KernelDevDebugContainer.xml
+    scanDirectories:
+        - ../../var/cache/dev/Symfony/Config

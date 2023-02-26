@@ -16,7 +16,7 @@
 
     <exclude-pattern>*/src/Standards/*/Tests/*\.(inc|css|js)$</exclude-pattern>
     <exclude-pattern>*/tests/Core/*/*\.(inc|css|js)$</exclude-pattern>
-    <exclude-pattern>*/(bootstrap.php|bundles.php|preload.php|index.php|Kernel.php|deploy.php|config.yml|FormFlowExtends.php)$</exclude-pattern>
+    <exclude-pattern>*/(bootstrap.php|bundles.php|preload.php|index.php|Kernel.php|deploy.php|config.yml|FormFlowExtends.php|object-manager.php)$</exclude-pattern>
     <exclude-pattern>*/var/*$</exclude-pattern>
     <exclude-pattern>*/vendor/*$</exclude-pattern>
 
