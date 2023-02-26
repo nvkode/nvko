@@ -13,6 +13,7 @@ namespace App\Controller;
 
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -40,6 +41,8 @@ class DocumentationController extends AbstractController
 
 
     /**
+     * @param Request $request
+     *
      * @return Response
      */
     #[Route(
@@ -47,9 +50,10 @@ class DocumentationController extends AbstractController
         name: 'read',
         methods: ['GET']
     )]
-    public function read(): Response
+    public function read(Request $request): Response
     {
         $data = [];
+        $file = null;
 
         try {
             // Read XML file into string.
@@ -71,12 +75,87 @@ class DocumentationController extends AbstractController
             // On error docs will be empty.
         }
 
+        $fileHash = $request->get('hash');
+
+        if (empty($data) === false
+            && $fileHash !== null
+            && array_key_exists('file', $data) === true
+        ) {
+            foreach ($data['file'] as $file) {
+                if ($file['@attributes']['hash'] === $fileHash) {
+                    $properties = [];
+
+                    if (array_key_exists('property', $file['class']) === true) {
+                        $properties = $file['class']['property'];
+                    }
+
+                    $parsedProperties = [];
+
+                    if (array_key_exists('name', $properties) === true) {
+                        $parsedProperties[] = $this->getPropertyInformation($properties);
+                    } else if (empty($properties) !== true) {
+                        foreach ($properties as $property) {
+                            $parsedProperties[] = $this->getPropertyInformation($property);
+                        }
+                    }
+
+                    $file = [
+                        'path'       => $file['@attributes']['path'],
+                        'name'       => $file['class']['name'],
+                        'extends'    => $file['class']['extends'],
+                        'properties' => $parsedProperties,
+                    ];
+                    break;
+                }
+            }
+        }
+
         return $this->render(
             '_docs/read.html.twig',
-            ['data' => $data]
+            [
+                'data' => $data,
+                'file' => $file,
+            ]
         );
 
     }//end index()
+
+
+    /**
+     * @param array<string, mixed> $property
+     *
+     * @return array<string, mixed>
+     */
+    private function getPropertyInformation(array $property): array
+    {
+        $docblock = $property['docblock'];
+        $tags     = $docblock['tag'];
+        $type     = null;
+
+        if (empty($tags) === false) {
+            if (count($tags) > 1) {
+                foreach ($tags as $tag) {
+                    if (array_key_exists('type', $tag) === true) {
+                        $type = $tag['type'];
+                        break;
+                    }
+                }
+            } else if (array_key_exists('@attributes', $tags) === true
+                && array_key_exists('type', $tags['@attributes']) === true
+            ) {
+                $type = $docblock['tag']['@attributes']['type'];
+            }
+        }
+
+        return [
+            'visibility'       => $property['@attributes']['visibility'],
+            'name'             => $property['name'],
+            'description'      => $docblock['description'],
+            'long-description' => $docblock['long-description'],
+            'type'             => $type,
+        ];
+
+    }//end getPropertyInformation()
 
 
 }//end class
