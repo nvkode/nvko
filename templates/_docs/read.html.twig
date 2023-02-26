@@ -32,7 +32,8 @@
                                             {% include '_docs/_components/_link.html.twig' with {
                                                 name: name,
                                                 path: path('app_documentation_read', {'hash': hash, 'type': 'file'}),
-                                                classes: 'hover:bg-white text-oyster hover:text-river group flex items-center p-2 pl-6 text-base font-light border-l border-transparent'
+                                                classes: 'hover:bg-white text-oyster hover:text-river group flex items-center p-2 pl-6 text-base font-light border-l border-transparent',
+                                                is_active: app.request.get('hash') is same as(hash)
                                             } %}
                                         {% endif %}
                                     {% endfor %}
