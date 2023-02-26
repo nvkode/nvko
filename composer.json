@@ -74,9 +74,11 @@
         ],
         "validation:phpcs": "composer validation:run --working-dir=tools/phpcs",
         "validation:phpstan": "composer validation:run --working-dir=tools/phpstan",
+        "validation:phpmd": "composer validation:run --working-dir=tools/phpmd",
         "validation:all": [
             "@validation:phpcs",
-            "@validation:phpstan"
+            "@validation:phpstan",
+            "@validation:phpmd"
         ]
     },
     "conflict": {

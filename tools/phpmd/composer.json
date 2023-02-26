@@ -1,0 +1,8 @@
+{
+    "require-dev": {
+        "phpmd/phpmd": "^2.13"
+    },
+    "scripts": {
+        "validation:run": "phpmd ../../src,../../tests ansi config.xml"
+    }
+}
