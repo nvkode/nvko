@@ -5,6 +5,7 @@
     "type": "project",
     "keywords": ["symfony", "base template", "symfony tools"],
     "homepage": "https://github.com/nvkode/nvko",
+    "readme": "https://github.com/nvkode/nvko/blob/development/README.md",
     "license": "MIT",
     "authors": [
         {
