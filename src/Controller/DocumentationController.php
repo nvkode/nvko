@@ -52,69 +52,13 @@ class DocumentationController extends AbstractController
     )]
     public function read(Request $request): Response
     {
-        $data = [];
-        $file = null;
-
-        try {
-            // Read XML file into string.
-            $xmlFile = file_get_contents($this->docsPath);
-
-            if ($xmlFile !== false) {
-                // Convert xml string into an object.
-                $xmlElement = simplexml_load_string($xmlFile);
-
-                // Convert xmlElement to JSON.
-                $xmlJSON = json_encode($xmlElement);
-
-                if ($xmlJSON !== false) {
-                    // Convert into associative array.
-                    $data = json_decode($xmlJSON, true);
-                }
-            }//end if
-        } catch (Exception) {
-            // On error docs will be empty.
-        }
-
-        $fileHash = $request->get('hash');
-
-        if (empty($data) === false
-            && $fileHash !== null
-            && array_key_exists('file', $data) === true
-        ) {
-            foreach ($data['file'] as $file) {
-                if ($file['@attributes']['hash'] === $fileHash) {
-                    $properties = [];
-
-                    if (array_key_exists('property', $file['class']) === true) {
-                        $properties = $file['class']['property'];
-                    }
-
-                    $parsedProperties = [];
-
-                    if (array_key_exists('name', $properties) === true) {
-                        $parsedProperties[] = $this->getPropertyInformation($properties);
-                    } else if (empty($properties) !== true) {
-                        foreach ($properties as $property) {
-                            $parsedProperties[] = $this->getPropertyInformation($property);
-                        }
-                    }
-
-                    $file = [
-                        'path'       => $file['@attributes']['path'],
-                        'name'       => $file['class']['name'],
-                        'extends'    => $file['class']['extends'],
-                        'properties' => $parsedProperties,
-                    ];
-                    break;
-                }
-            }
-        }
+        $data = $this->parseDocumentation();
 
         return $this->render(
             '_docs/read.html.twig',
             [
                 'data' => $data,
-                'file' => $file,
+                'file' => $this->convertDocumentation($data, $request->get('hash')),
             ]
         );
 
@@ -156,6 +100,84 @@ class DocumentationController extends AbstractController
         ];
 
     }//end getPropertyInformation()
+
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function parseDocumentation(): array
+    {
+        try {
+            // Read XML file into string.
+            $xmlFile = file_get_contents($this->docsPath);
+
+            if ($xmlFile !== false) {
+                // Convert xml string into an object.
+                $xmlElement = simplexml_load_string($xmlFile);
+
+                // Convert xmlElement to JSON.
+                $xmlJSON = json_encode($xmlElement);
+
+                if ($xmlJSON !== false) {
+                    // Convert into associative array.
+                    $data = json_decode($xmlJSON, true);
+
+                    if (is_array($data) === true) {
+                        return $data;
+                    }
+                }
+            }//end if
+        } catch (Exception) {
+            // On error docs will be empty.
+        }
+
+        return [];
+
+    }//end parseDocumentation()
+
+
+    /**
+     * @param array<string, mixed> $data
+     * @param string|null          $fileHash
+     *
+     * @return array<string, mixed>|null
+     */
+    private function convertDocumentation(array $data, ?string $fileHash): array|null
+    {
+        $file = null;
+
+        if (empty($data) === false && $fileHash !== null) {
+            foreach ($data['file'] as $file) {
+                if ($file['@attributes']['hash'] === $fileHash) {
+                    $parsedProperties = [];
+                    $properties       = [];
+
+                    if (array_key_exists('property', $file['class']) === true) {
+                        $properties = $file['class']['property'];
+                    }
+
+                    if (array_key_exists('name', $properties) === true) {
+                        $parsedProperties[] = $this->getPropertyInformation($properties);
+                    } else if (empty($properties) !== true) {
+                        foreach ($properties as $property) {
+                            $parsedProperties[] = $this->getPropertyInformation($property);
+                        }
+                    }
+
+                    $file = [
+                        'path'       => $file['@attributes']['path'],
+                        'name'       => $file['class']['name'],
+                        'extends'    => $file['class']['extends'],
+                        'properties' => $parsedProperties,
+                    ];
+                    break;
+                }
+            }
+        }
+
+        return $file;
+
+    }
 
 
 }//end class

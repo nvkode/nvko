@@ -61,12 +61,8 @@
                     <section class="pt-6 pb-24">
                         <div class="px-4 mx-auto sm:px-6">
                             {% for property in file.properties %}
-                                <table class="!text-left w-full">
+                                <table class="!text-left w-full border-b border-b-2 border-b-gray-200">
                                     <thead>
-                                    <tr>
-                                        <th class="w-1/2">Key</th>
-                                        <th class="w-1/2">Value</th>
-                                    </tr>
                                     </thead>
                                     <tbody>
                                     {% for key, value in property %}

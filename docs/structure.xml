@@ -40,7 +40,7 @@
             
             <parse_markers></parse_markers>
         </file>
-            <file path="src/Controller/DocumentationController.php" hash="11515ecee1869937a6375e2605324caa">
+            <file path="src/Controller/DocumentationController.php" hash="3c623a50de972e697abe2911184a1195">
             <docblock line="0">
     <description></description>
     <long-description></long-description>
