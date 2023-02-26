@@ -1,6 +1,22 @@
 {
+    "name": "nvkode/nvko",
+    "description": "Symfony base template with all necessary tools.",
+    "version": "0.0.1",
     "type": "project",
-    "license": "proprietary",
+    "keywords": ["symfony", "base template", "symfony tools"],
+    "homepage": "https://github.com/nvkode/nvko",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mykyta Melnyk",
+            "email": "liswelus@gmail.com",
+            "homepage": "https://github.com/nvkode",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "liswelus@gmail.com"
+    },
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
