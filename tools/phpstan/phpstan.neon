@@ -4,6 +4,8 @@ includes:
     - ./vendor/phpstan/phpstan-symfony/rules.neon
 
 parameters:
+    bootstrapFiles:
+        - '../../vendor/autoload.php'
     # Default configuration
     level: 8
     paths:
