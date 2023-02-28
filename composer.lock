@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e21100e0cd490cf402ff2bd48ab91a2",
+    "content-hash": "11a8d87e075875b66f6932d1903915a3",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1313,6 +1313,54 @@
                 "source": "https://github.com/doctrine/sql-formatter/tree/1.1.3"
             },
             "time": "2022-05-23T21:33:49+00:00"
+        },
+        {
+            "name": "nvkode/nvdoc",
+            "version": "0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nvkode/nvdoc.git",
+                "reference": "f8a1e9d29e62fa5c339a1774e3b42fc77cf37e08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nvkode/nvdoc/zipball/f8a1e9d29e62fa5c339a1774e3b42fc77cf37e08",
+                "reference": "f8a1e9d29e62fa5c339a1774e3b42fc77cf37e08",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 8.1",
+                "symfony/finder": "^6.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.0",
+                "squizlabs/php_codesniffer": "3.7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nvkode\\Nvdoc\\": "src/",
+                    "Nvkode\\Nvdoc\\Tests\\": "tests/",
+                    "Nvkode\\Nvdoc\\Helpers\\": "src/Helpers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mykyta Melnyk",
+                    "email": "liswelus@gmail.com"
+                }
+            ],
+            "description": "Documentation generator for Symfony projects.",
+            "support": {
+                "issues": "https://github.com/nvkode/nvdoc/issues",
+                "source": "https://github.com/nvkode/nvdoc/tree/v0.0.7"
+            },
+            "time": "2023-02-27T14:16:08+00:00"
         },
         {
             "name": "psr/cache",
@@ -4630,46 +4678,6 @@
             "time": "2023-01-16T22:05:37+00:00"
         },
         {
-            "name": "nvkode/nvdoc",
-            "version": "0.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nvkode/nvdoc.git",
-                "reference": "69879244eadedb511f63855ca2dcbed9b74cdeed"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nvkode/nvdoc/zipball/69879244eadedb511f63855ca2dcbed9b74cdeed",
-                "reference": "69879244eadedb511f63855ca2dcbed9b74cdeed",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^10.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Nvkode\\Nvdoc\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mykyta Melnyk",
-                    "email": "liswelus@gmail.com"
-                }
-            ],
-            "description": "Documentation generator for Symfony projects.",
-            "support": {
-                "issues": "https://github.com/nvkode/nvdoc/issues",
-                "source": "https://github.com/nvkode/nvdoc/tree/v0.0.1"
-            },
-            "time": "2023-02-26T21:03:23+00:00"
-        },
-        {
             "name": "phar-io/manifest",
             "version": "2.0.3",
             "source": {
@@ -5100,16 +5108,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.6.3",
+            "version": "9.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "e7b1615e3e887d6c719121c6d4a44b0ab9645555"
+                "reference": "9125ee085b6d95e78277dc07aa1f46f9e0607b8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e7b1615e3e887d6c719121c6d4a44b0ab9645555",
-                "reference": "e7b1615e3e887d6c719121c6d4a44b0ab9645555",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9125ee085b6d95e78277dc07aa1f46f9e0607b8d",
+                "reference": "9125ee085b6d95e78277dc07aa1f46f9e0607b8d",
                 "shasum": ""
             },
             "require": {
@@ -5182,7 +5190,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.3"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.4"
             },
             "funding": [
                 {
@@ -5198,7 +5206,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-04T13:37:15+00:00"
+            "time": "2023-02-27T13:06:37+00:00"
         },
         {
             "name": "sebastian/cli-parser",

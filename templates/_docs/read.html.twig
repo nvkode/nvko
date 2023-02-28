@@ -6,46 +6,34 @@
     <div class="z-50 hidden bg-alabaster lg:flex md:flex-col md:fixed md:inset-y-0 lg:w-[435px]">
         <div class="flex flex-col flex-1 min-h-0 border-r border-smoke">
             <div class="flex flex-col flex-1 pt-8 pb-4 overflow-y-auto lg:px-6">
-                {% for key, array in data %}
-                    {% if key is same as('@attributes') %}
-                        {% if array.name is defined %}
-                            <div class="flex items-center flex-shrink-0 text-comet">
-                                <a href="{{ path('app_documentation_read') }}">
-                                    <span class="inline-flex items-center font-bold tracking-tighter lg:text-2xl">
-                                        {{ array.name }}
-                                    </span>
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% elseif key is same as('file') %}
-                        <nav class="flex-1 mt-12">
-                            <div class="border-l">
-                                <p class="text-comet text-sm font-semibold uppercase ml-6 lg:text-[15px]">
-                                    Files
-                                </p>
-                                <div class="mt-3">
-                                    {% for file in array %}
-                                        {% if file['@attributes'] is defined %}
-                                            {% set name = file['@attributes'].path %}
-                                            {% set hash = file['@attributes'].hash %}
-
-                                            {% include '_docs/_components/_link.html.twig' with {
-                                                name: name,
-                                                path: path('app_documentation_read', {'hash': hash}),
-                                                classes: 'hover:bg-white text-oyster hover:text-river group flex items-center p-2 pl-6 text-base font-light border-l border-transparent',
-                                                is_active: app.request.get('hash') is same as(hash)
-                                            } %}
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </nav>
-                    {% endif %}
-                {% endfor %}
+                <div class="flex items-center flex-shrink-0 text-comet">
+                    <a href="{{ path('app_documentation_read') }}">
+                        <span class="inline-flex items-center font-bold tracking-tighter lg:text-2xl">
+                            Documentation
+                        </span>
+                    </a>
+                </div>
+                <nav class="flex-1 mt-12">
+                    <div class="border-l">
+                        <p class="text-comet text-sm font-semibold uppercase ml-6 lg:text-[15px]">
+                            Files
+                        </p>
+                        <div class="mt-3">
+                            {% for key, array in data %}
+                                {% include '_docs/_components/_link.html.twig' with {
+                                    name: key,
+                                    path: path('app_documentation_read', {'namespace': key}),
+                                    classes: 'hover:bg-white text-oyster hover:text-river group flex items-center p-2 pl-6 text-base font-light border-l border-transparent',
+                                    is_active: app.request.get('namespace') is same as(key)
+                                } %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </nav>
             </div>
         </div>
     </div>
-    {% if file is not null %}
+    {% if namespaceDoc is not null %}
         <div class="relative z-0 flex flex-1 overflow-hidden">
             <div class="relative z-0 flex-1 overflow-y-auto focus:outline-none lg:pl-[435px]">
                 <div class="flex-1 mx-auto">
@@ -53,33 +41,107 @@
                         <div class="px-4 mx-auto sm:px-6">
                             <h1 class="pt-8 mx-auto text-2xl leading-none tracking-tighter text-comet lg:text-3xl"
                                 style="opacity: 1; transform: translateY(0px);">
-                                {{ file.name }}
+                                {{ currentNamespace|replace({(namespaceDoc.namespace ~ '\\'): ''}) }}
                             </h1>
-                            <p class="pt-2 pb-8">{{ file.path }}</p>
+                            <p class="pt-2 pb-8">
+                                {{ namespaceDoc.namespace }}
+                            </p>
                         </div>
                     </section>
                     <section class="pt-6 pb-24">
                         <div class="px-4 mx-auto sm:px-6">
-                            {% for property in file.properties %}
-                                <table class="!text-left w-full border-b border-b-2 border-b-gray-200">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                    {% for key, value in property %}
-                                        <tr>
-                                            <td>{{ key }}</td>
-                                            <td>
-                                                {% if value is not same as('') %}
-                                                    {{ value }}
-                                                {% else %}
-                                                    -
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            {% endfor %}
+                            {% if namespaceDoc.methods|length > 0 %}
+                                <h2 class="mb-2">Methods</h2>
+                                <div class="flex flex-col">
+                                    <div class="overflow-x-auto">
+                                        <div class="inline-block min-w-full py-2 align-middle">
+                                            <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                                    <thead class="bg-gray-50 dark:bg-gray-800">
+                                                    <tr>
+                                                        <th scope="col"
+                                                            class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-300">
+                                                            <span>Name</span>
+                                                        </th>
+
+                                                        <th scope="col"
+                                                            class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-300">
+                                                            Visibility
+                                                        </th>
+
+                                                        <th scope="col"
+                                                            class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-300">
+                                                            Parameters
+                                                        </th>
+
+                                                        <th scope="col"
+                                                            class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-300">
+                                                            Return
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="bg-white divide-y divide-gray-700 bg-gray-900 text-gray-300">
+                                                    {% for method in namespaceDoc.methods %}
+                                                        <tr>
+                                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                                {{ method.name }}
+                                                            </td>
+                                                            <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
+                                                                {% if method.isPrivate %}
+                                                                    {% set method_color = 'text-red-500' %}
+                                                                    {% set method_text = 'Private' %}
+                                                                {% elseif method.isProtected %}
+                                                                    {% set method_color = 'text-gray-300' %}
+                                                                    {% set method_text = 'Protected' %}
+                                                                {% else %}
+                                                                    {% set method_color = 'text-emerald-500' %}
+                                                                    {% set method_text = 'Public' %}
+                                                                {% endif %}
+
+                                                                <div class="inline px-3 py-1 text-sm font-normal rounded-full {{ method_color }} gap-x-2 dark:bg-gray-800">
+                                                                    {{ method_text }}
+                                                                </div>
+                                                            </td>
+                                                            <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                                                {% if method.parameters|length > 0 %}
+                                                                    <table>
+                                                                        <tbody>
+                                                                        {% for parameter in method.parameters %}
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span class="font-semibold">{{ parameter.name }}</span>:
+                                                                                </td>
+                                                                                <td class="pl-2">
+                                                                                    {% if parameter.type %}{{ parameter.type }}{% endif %}
+                                                                                    {% if parameter.isOptional == false %}
+                                                                                        <span class="text-red-500 text-semibold">REQUIRED</span>
+                                                                                    {% endif %}
+                                                                                </td>
+                                                                            </tr>
+                                                                        {% endfor %}
+                                                                        </tbody>
+                                                                    </table>
+                                                                {% else %}
+                                                                    -
+                                                                {% endif %}
+                                                            </td>
+
+                                                            <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                                                {% if method.returnType %}
+                                                                    {{ method.returnType }}
+                                                                {% else %}
+                                                                    <span class="text-red-500">undefined</span>
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </section>
                 </div>
