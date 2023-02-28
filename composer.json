@@ -19,7 +19,7 @@
         "email": "liswelus@gmail.com"
     },
     "minimum-stability": "stable",
-    "prefer-stable": true,
+    "prefer-stable": false,
     "require": {
         "php": ">=8.1",
         "ext-ctype": "*",
@@ -28,7 +28,6 @@
         "doctrine/doctrine-bundle": "^2.8",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
-        "nvkode/nvdoc": "^0.0.7",
         "symfony/console": "6.2.*",
         "symfony/dotenv": "6.2.*",
         "symfony/flex": "^2",
@@ -108,6 +107,7 @@
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.2.*",
         "symfony/css-selector": "6.2.*",
+        "symfony/maker-bundle": "^1.48",
         "symfony/phpunit-bridge": "^6.2"
     }
 }
