@@ -1,12 +1,17 @@
 {% extends '_docs/base.html.twig' %}
 
-{% set titles = ['Name', 'Visibility', 'Parameters', 'Return'] %}
+{% set titles = [
+    'read.table.titles.name'|trans({}, 'nvdoc'),
+    'read.table.titles.visibility'|trans({}, 'nvdoc'),
+    'read.table.titles.parameters'|trans({}, 'nvdoc'),
+    'read.table.titles.return'|trans({}, 'nvdoc')
+] %}
 {% set table_macro = '_docs/_macros/_tables/_namespace.html.twig' %}
 {% set arguments = namespaceDoc %}
 
 {% use '_docs/_components/_table/_table.html.twig' %}
 
-{% block title %}Documentation{% endblock %}
+{% block title %}{{ 'base.title'|trans({}, 'nvdoc') }}{% endblock %}
 
 {% block page %}
     {% include '_docs/_participles/_sidebar.html.twig' with {
@@ -24,7 +29,7 @@
                     <div class="px-4 mx-auto sm:px-6 py-6">
                         {% if namespaceDoc.methods|length > 0 %}
                             <h2 class="text-comet font-semibold text-xl mb-2">
-                                Methods
+                                {{ 'read.sections.methods'|trans({}, 'nvdoc') }}
                             </h2>
                         {% endif %}
                         {% block table %}
