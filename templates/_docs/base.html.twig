@@ -5,6 +5,11 @@
     {{ encore_entry_link_tags('docs') }}
 {% endblock %}
 
+{% block metas %}
+    {{ parent() }}
+    <meta name="robots" content="noindex, nofollow"/>
+{% endblock %}
+
 {% block body %}
     <body class="relative z-0 flex-1 overflow-y-auto focus:outline-none font-sans bg-gray-900 text-gray-50">
         {% block page %}{% endblock %}
