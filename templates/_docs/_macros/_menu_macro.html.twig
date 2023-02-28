@@ -1,11 +1,11 @@
-{% macro parse(tree, level = 1) %}
+{% macro parse(tree, level=1) %}
     {% set first_level = level == 1 %}
 
     {% for key, value in tree %}
         {% if value is iterable %}
 
             <div{% if not first_level %} class="border-l"{% endif %}>
-                <p class="text-comet text-sm font-semibold{% if not first_level %} ml-6{% endif%} lg:text-[15px] mb-2">
+                <p class="text-comet text-sm font-semibold{% if not first_level %} ml-6{% endif %} lg:text-[15px] mb-2">
                     {{ key ~ '\\' }}
                 </p>
 

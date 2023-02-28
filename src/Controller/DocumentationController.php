@@ -87,9 +87,10 @@ class DocumentationController extends AbstractController
 
                 if (($i + 1) < $count) {
                     $last = &$last[$part];
-                } else {
-                    $last[$part] = $item;
+                    continue;
                 }
+
+                $last[$part] = $item;
             }
         }
 

@@ -28,6 +28,9 @@
                             </h2>
                         {% endif %}
                         {% block table %}
+                            {# twigcs use-var titles #}
+                            {# twigcs use-var table_macro #}
+                            {# twigcs use-var arguments #}
                             {{ parent() }}
                         {% endblock %}
                     </div>
