@@ -2,6 +2,28 @@
 
 {% block title %}Documentation{% endblock %}
 
+{% macro parse_menu(tree, level=1) %}
+    {% for key, value in tree %}
+        {% if value is iterable %}
+
+            <div{% if level is not same as(1) %} class="border-l"{% endif %}>
+                <p class="text-comet text-sm font-semibold{% if level is not same as(1) %} ml-6{% endif%} lg:text-[15px] mb-2">
+                    {{ key ~ '\\' }}
+                </p>
+
+                <div {% if level is not same as(1) %} class="ml-6"{% endif %}>
+                    {% set level = level + 1 %}
+                    {{ _self.parse_menu(value, level) }}
+                </div>
+            </div>
+        {% else %}
+            <a class="pl-6 border-l" href="{{ path('app_documentation_read', {namespace: value}) }}">
+                {{ key }}
+            </a>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
 {% block page %}
     <div class="z-50 hidden bg-alabaster lg:flex md:flex-col md:fixed md:inset-y-0 lg:w-[435px]">
         <div class="flex flex-col flex-1 min-h-0 border-r border-smoke">
@@ -14,21 +36,15 @@
                     </a>
                 </div>
                 <nav class="flex-1 mt-12">
-                    <div class="border-l">
-                        <p class="text-comet text-sm font-semibold uppercase ml-6 lg:text-[15px]">
-                            Files
-                        </p>
-                        <div class="mt-3">
-                            {% for key, array in data %}
-                                {% include '_docs/_components/_link.html.twig' with {
-                                    name: key,
-                                    path: path('app_documentation_read', {'namespace': key}),
-                                    classes: 'hover:bg-white text-oyster hover:text-river group flex items-center p-2 pl-6 text-base font-light border-l border-transparent',
-                                    is_active: app.request.get('namespace') is same as(key)
-                                } %}
-                            {% endfor %}
-                        </div>
-                    </div>
+                    {{ _self.parse_menu(navigation) }}
+                    {#                            {% for key, array in data %} #}
+                    {#                                {% include '_docs/_components/_link.html.twig' with { #}
+                    {#                                    name: key, #}
+                    {#                                    path: path('app_documentation_read', {'namespace': key}), #}
+                    {#                                    classes: 'hover:bg-white text-oyster hover:text-river group flex items-center p-2 pl-6 text-base font-light border-l border-transparent', #}
+                    {#                                    is_active: app.request.get('namespace') is same as(key) #}
+                    {#                                } %} #}
+                    {#                            {% endfor %} #}
                 </nav>
             </div>
         </div>
