@@ -26,6 +26,9 @@
             "migrations/.gitignore"
         ]
     },
+    "nvkode/nvdoc-bundle": {
+        "version": "0.0.7"
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
