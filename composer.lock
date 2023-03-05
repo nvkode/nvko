@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88ca1565ea6e0b533fe2ceec90929d89",
+    "content-hash": "59c5f97b203f11a2177139e95f45cec4",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1364,16 +1364,16 @@
         },
         {
             "name": "nvkode/nvdoc-bundle",
-            "version": "0.3.0",
+            "version": "0.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nvkode/nvdoc-bundle.git",
-                "reference": "6025175881ffca27ab1355d81431001f6d3b571a"
+                "reference": "5db781e16a921fa5f1c7930331f4c8642a649751"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nvkode/nvdoc-bundle/zipball/6025175881ffca27ab1355d81431001f6d3b571a",
-                "reference": "6025175881ffca27ab1355d81431001f6d3b571a",
+                "url": "https://api.github.com/repos/nvkode/nvdoc-bundle/zipball/5db781e16a921fa5f1c7930331f4c8642a649751",
+                "reference": "5db781e16a921fa5f1c7930331f4c8642a649751",
                 "shasum": ""
             },
             "require": {
@@ -1406,9 +1406,9 @@
             "description": "Symfony Bundle for generating and displaying project documentation",
             "support": {
                 "issues": "https://github.com/nvkode/nvdoc-bundle/issues",
-                "source": "https://github.com/nvkode/nvdoc-bundle/tree/v0.3.0"
+                "source": "https://github.com/nvkode/nvdoc-bundle/tree/v0.3.5"
             },
-            "time": "2023-03-05T07:44:28+00:00"
+            "time": "2023-03-05T15:26:42+00:00"
         },
         {
             "name": "psr/cache",
@@ -4769,16 +4769,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.3",
+            "version": "v4.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039"
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/570e980a201d8ed0236b0a62ddf2c9cbb2034039",
-                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
                 "shasum": ""
             },
             "require": {
@@ -4819,9 +4819,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.3"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
             },
-            "time": "2023-01-16T22:05:37+00:00"
+            "time": "2023-03-05T19:49:14+00:00"
         },
         {
             "name": "phar-io/manifest",

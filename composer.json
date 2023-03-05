@@ -28,7 +28,7 @@
         "doctrine/doctrine-bundle": "^2.8",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
-        "nvkode/nvdoc-bundle": "^0.3.0",
+        "nvkode/nvdoc-bundle": "^0.3.5",
         "symfony/console": "6.2.*",
         "symfony/dotenv": "6.2.*",
         "symfony/flex": "^2",
