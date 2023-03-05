@@ -22,7 +22,6 @@ Encore
      */
     .addEntry('application', './assets/application/index.ts')
     .addEntry('dashboard', './assets/dashboard/index.ts')
-    .addEntry('docs', './assets/docs/index.ts')
     .addEntry('emails', './assets/emails/index.ts')
 
     // Style entries

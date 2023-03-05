@@ -1,7 +1,7 @@
 {
     "name": "nvkode/nvko",
     "description": "Symfony base template with all necessary tools.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "project",
     "keywords": ["symfony", "base template", "symfony tools"],
     "homepage": "https://github.com/nvkode/nvko",
