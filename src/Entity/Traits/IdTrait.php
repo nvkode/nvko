@@ -14,6 +14,9 @@ namespace App\Entity\Traits;
 use Symfony\Component\Uid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 trait IdTrait
 {
 
@@ -36,7 +39,7 @@ trait IdTrait
     {
         return $this->id;
 
-    }//end getId()
+    }
 
 
 }
